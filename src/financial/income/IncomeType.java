@@ -1,6 +1,8 @@
 package financial.income;
 
 import java.security.PrivateKey;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum IncomeType{
     SALARY("工资"),
@@ -15,5 +17,17 @@ public enum IncomeType{
     public String displayName()
     {
         return incomeName;
+    }
+
+    private static final Map<String, IncomeType> NAME_MAP = new HashMap<>();
+
+    static {
+        for (IncomeType it : values()) {
+            NAME_MAP.put(it.incomeName, it);
+        }
+    }
+    public static IncomeType fromDisplayName (String name)
+    {
+        return NAME_MAP.get(name);
     }
 }
